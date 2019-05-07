@@ -1,0 +1,14 @@
+body{
+    background: grey;
+}
+h1{
+    text-align: center;
+}
+body{
+    color: white;
+}
+#app{
+    text-align: left;
+    font-size: 30px;
+    font-family: arial;
+}
