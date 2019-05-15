@@ -1,112 +1,117 @@
 //Cotizador Constructor
 //Constructor para Seguro
-function Seguro(marca,anio,tipo){
-    this.marca = marca;
-    this.anio = anio;
-    this.tipo = tipo;
+class Seguro{
+    constructor(marca,anio,tipo){
+        this.marca = marca;
+        this.anio = anio;
+        this.tipo = tipo;
+    }
+    cotizarSeguro(){
+        /*
+            1 = americano 1.15
+            2 = asiatico 1.05
+            3 = europeo 1.35 
+        */
+        let cantidad; 
+        const base = 2000;
+    
+        switch(this.marca){
+            case '1':
+            cantidad = base * 1.15;
+            break
+            case '2':
+            cantidad = base * 1.05;
+            break
+            case '3':
+            cantidad  = base * 1.35
+            break
+        }
+        //console.log(cantidad);
+    
+        //leer el año
+        const diferencia = new Date().getFullYear() - this.anio;
+        //Cada año de dieferencai hay qie reducir 3% el valor del seguro
+        cantidad -= ((diferencia * 3) * cantidad) / 100;
+        //console.log(diferencia);
+        
+        /*
+        Si el seguro se básico se multiplica por 30% mas
+        Si el seguro es completo 50% mas
+        */
+       
+       if(this.tipo === 'basico'){
+           cantidad *= 1.30;
+        }else{
+            cantidad *= 1.50;
+        }
+        
+        //console.log(cantidad);
+        return cantidad;
+        //console.log(this.marca);
+        //console.log(this.anio);
+        //console.log(this.tipo);
+    }
+
 }
 
-Seguro.prototype.cotizarSeguro = function(){
-    /*
-        1 = americano 1.15
-        2 = asiatico 1.05
-        3 = europeo 1.35 
-    */
-    let cantidad; 
-    const base = 2000;
 
-    switch(this.marca){
-        case '1':
-        cantidad = base * 1.15;
-        break
-        case '2':
-        cantidad = base * 1.05;
-        break
-        case '3':
-        cantidad  = base * 1.35
-        break
-    }
-    //console.log(cantidad);
-
-    //leer el año
-    const diferencia = new Date().getFullYear() - this.anio;
-    //Cada año de dieferencai hay qie reducir 3% el valor del seguro
-    cantidad -= ((diferencia * 3) * cantidad) / 100;
-    //console.log(diferencia);
-    
-    /*
-    Si el seguro se básico se multiplica por 30% mas
-    Si el seguro es completo 50% mas
-    */
-   
-   if(this.tipo === 'basico'){
-       cantidad *= 1.30;
-    }else{
-        cantidad *= 1.50;
-    }
-    
-    //console.log(cantidad);
-    return cantidad;
-    //console.log(this.marca);
-    //console.log(this.anio);
-    //console.log(this.tipo);
-}
 
 //Todo lo que se Muestra
-function Interfaz(){}
+class Interfaz{
     //Mensaje que se imprime en el Html
-Interfaz.prototype.mostrarMensaje = function(mensaje,tipo){
-    const div = document.createElement('div');
-
-    if(tipo === 'error'){
-        div.classList.add('mensaje', 'error');
-    }else{
-        div.classList.add('mensaje','correcto');
+    mostrarMensaje(mensaje,tipo){
+        const div = document.createElement('div');
+    
+        if(tipo === 'error'){
+            div.classList.add('mensaje', 'error');
+        }else{
+            div.classList.add('mensaje','correcto');
+        }
+        div.innerHTML = `${mensaje}`;
+        formulario.insertBefore(div,document.querySelector('.form-group'));
+        setTimeout(function(){
+            document.querySelector('.mensaje').remove();
+        }, 3000)
     }
-    div.innerHTML = `${mensaje}`;
-    formulario.insertBefore(div,document.querySelector('.form-group'));
-    setTimeout(function(){
-        document.querySelector('.mensaje').remove();
-    }, 3000)
-}
-
 
 //Imprimir el resultado de la cotizacion
-Interfaz.prototype.mostrarResultado = function(seguro,total){
-    const resultado = document.getElementById('resultado');
-    let marca;
-    //console.log(seguro);
-    switch(seguro.marca){
-        case '1':
-        marca = 'Americano';
-        break
-        case '2':
-        marca = 'Asiatico';
-        break;
-        case '3':
-        marca = 'Europeo';
-        break;
+    mostrarResultado(seguro,total){
+        const resultado = document.getElementById('resultado');
+        let marca;
+        //console.log(seguro);
+        switch(seguro.marca){
+            case '1':
+            marca = 'Americano';
+            break
+            case '2':
+            marca = 'Asiatico';
+            break;
+            case '3':
+            marca = 'Europeo';
+            break;
+        }
+        //console.log(marca);
+    
+        const div = document.createElement('div');
+        //insertar la informacion
+        div.innerHTML = `
+            <p class="header">Tu Resume:</p>
+            <p>Marca: ${marca}</p>
+            <p>Año: ${seguro.anio}</p>
+            <p>Tipo: ${seguro.tipo}</p>
+            <p>Total $ ${total}</p>
+    
+        `;
+        const spinner = document.querySelector('#cargando img');
+        spinner.style.display = 'block'; 
+        setTimeout(function(){
+            spinner.style.display = 'none';
+            resultado.appendChild(div);
+        },3000) 
+    
     }
-    //console.log(marca);
-
-    const div = document.createElement('div');
-    //insertar la informacion
-    div.innerHTML = `
-        <p class="header">Tu Resume:</p>
-        <p>Marca: ${marca}</p>
-        <p>Año: ${seguro.anio}</p>
-        <p>Tipo: ${seguro.tipo}</p>
-        <p>Total $ ${total}</p>
-
-    `;
-    const spinner = document.querySelector('#cargando img');
-    spinner.style.display = 'block'; 
-    setTimeout(function(){
-        spinner.style.display = 'none';
-        resultado.appendChild(div);
-    },3000) 
-
 }
+    
 
 
 //EventListener
