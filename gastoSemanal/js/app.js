@@ -63,6 +63,36 @@ let cantidadPresupuesto;
          //Insertar al HTML
          gastoListado.appendChild(li);
      }
+
+     //Comprueba el presupuesto restante
+     presupuestoRestante(cantidad){
+         //console.log(cantidadPresupuesto);
+         const restante = document.querySelector('span#restante');
+         //leemos el presupuesto restante
+         const presupuestoRestanteUsuario = cantidadPresupuesto.presupuestoRestante(cantidad); 
+         //console.log(presupuestoRestanteUsuario);
+
+         restante.innerHTML = `${presupuestoRestanteUsuario}`;
+
+         this.comprobarPresupuesto();
+     }
+
+     //Cambia de color el presupuesto restante
+     comprobarPresupuesto(){
+        const presupuestoTotal = cantidadPresupuesto.presupuesto;
+        const presupuestoRestante = cantidadPresupuesto.restante;
+        
+        //comprobar el 25%
+        if((presupuestoTotal / 4) > presupuestoRestante) {
+            const restante = document.querySelector('.restante');
+            restante.classList.remove('alert-succes', 'alert-warnig');
+            restante.classList.add('alert-danger');
+        }else if((presupuestoTotal / 2) > presupuestoRestante){
+            const restante = document.querySelector('.restante');
+            restante.classList.remove('alert-succes');
+            restante.classList.add('alert-warning');
+        }
+     }
  }
 
 
@@ -106,6 +136,7 @@ formulario.addEventListener('submit',function(e){
         //Insertar en el HTML
         ui.imprimirMensaje('Correcto', 'correcto');
         ui.agregarGastoListado(nombreGasto,cantidadGasto);
+        ui.presupuestoRestante(cantidadGasto);
 
     }
 
