@@ -1,31 +1,19 @@
 document.getElementById('txtBtn').addEventListener('click', cargarTXT);
 document.getElementById('jsonBtn').addEventListener('click', cargarJSON);
-document.getElementById('apiBTN').addEventListener('click', cargarREST)
+document.getElementById('apiBTN').addEventListener('click', cargarREST);
+
 
 function cargarTXT(){
     fetch('datos.txt')
-        .then(function(res){
-            //console.log(res.text());
-            return res.text();
-        })
-        .then(function(data){
-            console.log(data);
-            document.getElementById('resultado').innerHTML = data;
-        })
-        .catch(function(error){
-            console.log(error);
-        });
+        .then(res =>res.text())
+        .then(data => document.getElementById('resultado').innerHTML = data)
+        .catch(error =>console.log(error));
 }
-
 
 function cargarJSON(){
     fetch('empleados.json')
-        .then(function(res){
-            //console.log(res);
-            return res.json();
-        })
-        .then(function(data){
-            //console.log(data);
+        .then(res => res.json())
+        .then(data => {
             let html = '';
             data.forEach(function(empleado){
                 html += `
@@ -35,19 +23,14 @@ function cargarJSON(){
 
             document.getElementById('resultado').innerHTML = html;
         })
-        .catch(function(error){
-            console.log(error);
-        });
+        .catch(error => console.log(error));
 }
+
 
 function cargarREST(){
     fetch('https://picsum.photos/list')
-        .then(function(res){
-            //console.log(res);
-            return res.json();
-        })
-        .then(function(imagenes){
-            //console.log(imagenes);
+        .then(res => res.json())
+        .then(imagenes => {
             let html = '';
             
             imagenes.forEach(function(imagen){
