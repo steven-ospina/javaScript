@@ -1,7 +1,7 @@
-const API = new API();
+const cotizador = new API('5a90c0287f03f4a108f77773c75bcf169d783d9c01714ba563f5e97c882d3de9');//apikey
 const ui = new Interfaz();
 
-
+cotizador.obtenerMonedasApi();  
 
 //leer el formulario
 
@@ -33,6 +33,11 @@ formulario.addEventListener('submit', (e) =>{
         //console.log('Selecciona algo');
     }else{
         //Todo bien consulta la api
+        cotizador.obtenerValores(monedaSeleccionada,criptoMonedaSeleccionada)
+            .then(data =>{
+                //console.log(data);
+                ui.mostrarResultado(data.resultado.RAW,monedaSeleccionada,criptoMonedaSeleccionada);
+            })
         //console.log('todo bien');
     }
 });
