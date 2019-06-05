@@ -22,7 +22,20 @@ document.getElementById('buscarBtn').addEventListener('click', (e) =>{
        //Cuando hay una busqueda
        eventBrite.obtenerEventos(textoBuscador,categoriaSeleccionada)
         .then(eventos =>{
-            console.log(eventos);
+            //console.log(eventos);
+            if(eventos.eventos.events.length > 0){
+                //console.log('si hat eventos');
+
+                //Limpiar resultados
+                ui.limpiarResultados();
+
+                //si hay eventos mostrar el resultado
+                ui.mostrarEventos(eventos.eventos)
+            }else{
+                //console.log('no hay');
+                //no hay eventos enviar alert
+                ui.mostrarMensaje('No hay resultados','alert alert-danger mt-4');  
+            }
         })
    }else{
        //Mostrar mensaje para que imprima algo
