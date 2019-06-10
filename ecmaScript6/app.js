@@ -218,13 +218,90 @@ for(let i in persona){
 
 
 //Sets
+/*
 let carrito = new Set();
 
 carrito.add('Camisa');//para agregar al set
 carrito.add('Zaptos');
-carrito.add('Carecola');
+carrito.add('carecola');
 
 //console.log(carrito);
-console.log(carrito.size);//el tamaño de nuetro set
+//console.log(carrito.size);//el tamaño de nuetro set
 
-let numeros = new Set(1,2,3,4,5,6,7,8,9,0,1,2)
+let numeros = new Set([1,2,3,4,5,6,7,8,9,0,1,2,11]);
+
+//console.log(numeros);
+//console.log(numeros.size);
+
+//Comprobar que un valor exista
+//console.log(carrito.has('carecola'));
+//eliminar algo del set
+carrito.delete('carecola');
+
+//Vaciar todo el set
+//carrito.clear();
+
+//Recorrer se con forEach
+
+carrito.forEach((producto, index) =>{
+    console.log(`${index} : ${producto}`);
+    //la llave y le valor son iguales
+});;
+
+//como convertir un set en Array
+
+const arregloCarrito = [...carrito]
+
+console.log(arregloCarrito);
+*/
+
+//Maps
+/*
+let cliente = new Map();
+
+cliente.set('nombre', 'Karen');
+cliente.set('tipo','Premiun');
+cliente.set('saldo', 3000);
+
+//Acceder alos valores
+//console.log(cliente.get('nombre'));
+//console.log(cliente.get('tipo'));
+//console.log(cliente.get('saldo'));
+//console.log(cliente);
+
+
+//Metodos para el maps
+
+//Para obtener el tamaño del maps
+//console.log(cliente.size);
+//Si queremos comprobar que un valor exista
+//console.log(cliente.has('tipo'));
+//para obtener un valor
+//console.log(cliente.get('nombre'));
+//Para borrar un elemento del maps
+//cliente.delete('nombre');
+//console.log(cliente.has('nombre'));
+//Limpiar el maps
+//cliente.clear();
+//console.log(cliente);
+
+
+//Mandar propiedades por default
+const paciente = new Map(
+    //Mandamos los valores por defecto
+    [['nombre','paciente']],
+    [['habitacion','No Definido']]
+);
+
+paciente.set('nombre','Antonio');
+paciente.set('habitacion',400);
+
+console.log(paciente);
+
+//Un maps puede recorrece por un ForEach
+paciente.forEach((datos,index) =>{
+    console.log(`${index}: ${datos}`);
+});
+*/
+
+//Iteradores
