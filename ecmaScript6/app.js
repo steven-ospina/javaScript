@@ -304,4 +304,114 @@ paciente.forEach((datos,index) =>{
 });
 */
 
+/*
 //Iteradores
+//anteriores
+for(let i = 0; i < 10;i++){
+    console.log(i);
+}
+//
+function crearInterador(carrito){
+    //Inicializamos el indice
+    let i = 0;
+    
+    return{
+        siguiente :() =>{
+            let fin = (i >= carrito.length);
+
+            let valor = !fin ? carrito[i++] : undefined;
+
+            return{
+                fin : fin,
+                valor : valor
+            }
+        }
+    }
+}
+
+const carrito = ['prodcuto 1','prodcuto 2','prodcuto 3','prodcuto 4'];
+
+const recorrerCarrito = crearInterador(carrito);
+
+console.log(recorrerCarrito.siguiente());
+console.log(recorrerCarrito.siguiente());
+console.log(recorrerCarrito.siguiente());
+console.log(recorrerCarrito.siguiente());
+console.log(recorrerCarrito.siguiente());
+*/
+
+//Generadores
+
+//es una function que va a devolver un iterador, se indica con un * despues de la palabra function
+/*
+function *crearGenerador(){
+    //yield
+    yield 1;
+    yield 'Nombre';
+    yield 3+3;
+    yield true;
+}
+
+const iterador = crearGenerador();
+
+console.log(iterador.next().value);
+console.log(iterador.next().value);
+console.log(iterador.next().value);
+console.log(iterador.next().value);
+//////////////////////7
+function *neuvoGenerador(carrito){
+    for(let i =0; i< carrito.length; i++){
+        yield carrito[i];
+    }
+}
+
+//Creamos el carrito
+const carrito = ['prodcuto 1','prodcuto 2','prodcuto 3','prodcuto 4'];
+
+//Recorremoes el iterador
+let iterador = neuvoGenerador(carrito);
+
+console.log(iterador.next().value);
+console.log(iterador.next().done);
+*/
+
+
+//Expresiones regulares 
+
+const exp1 = new RegExp('/abc/');
+const exp2 = /abc/;
+
+console.log(exp1);  
+console.log(exp2);
+
+let valor, expReg;
+
+//expReg = /[0123456789]/;
+expReg = /[0-9]/;
+valor = 1992
+
+console.log(expReg.test(valor));
+
+//Buscar una fecha con exprecion regular 20-10-2019
+
+expReg = /\d\d-\d\d-\d\d\d\d/
+valor = '20-10-2019';
+
+console.log(expReg.test(valor));
+
+//Hora 10:30
+expReg = /\d\d:\d\d/
+valor = '10:30 AM';
+
+console.log(expReg.test(valor));    
+
+//Hora 10:30
+expReg = /\d\d:\d\d \D\D/
+valor = '10:30 AM';
+
+console.log(expReg.test(valor));
+
+expReg = /\d\d\d\d/
+valor = 123;
+
+console.log(expReg.test(valor));    
