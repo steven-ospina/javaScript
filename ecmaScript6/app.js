@@ -412,6 +412,11 @@ valor = '10:30 AM';
 console.log(expReg.test(valor));
 
 expReg = /\d\d\d\d/
-valor = 123;
+valor = 1234;
 
-console.log(expReg.test(valor));    
+console.log(expReg.test(valor));
+
+expReg = /\d+/
+valor = 1234;
+
+console.log(expReg.test(valor));                                                                                                                                                                            
