@@ -393,7 +393,6 @@ valor = 1992
 console.log(expReg.test(valor));
 
 //Buscar una fecha con exprecion regular 20-10-2019
-
 expReg = /\d\d-\d\d-\d\d\d\d/
 valor = '20-10-2019';
 
@@ -419,4 +418,66 @@ console.log(expReg.test(valor));
 expReg = /\d+/
 valor = 1234;
 
-console.log(expReg.test(valor));                                                                                                                                                                            
+console.log(expReg.test(valor));
+
+//Negar la expresion
+
+expReg = /[^0-9]/;
+valor = -1992
+
+console.log(expReg.test(valor));
+
+//La sintaxis con llaves {1,2}
+//fecha
+expReg =/\d{1,2}-\d{1,2}-\d{4}/
+valor = '10-10-2019';//true
+valor = '1-1-2019';//true
+valor = '1-100-2019';//false
+valor = '10-10-203';//false
+
+console.log(expReg.test(valor));
+
+//Letras o numeros
+expReg =/\w+///la w solo numeros y letra y el + para esperar mas caracteres
+valor = 'mensaje de prueba';
+valor = 1234;
+valor = ' ';//espacio vacio no cuenta como numeros o letras
+
+console.log(expReg.test(valor));
+
+//Revisar qie sena purso nuemros
+expReg = /\d+/
+valor = 123//true
+valor = 'hola';//false
+
+console.log(expReg.test(valor));
+
+//otra forma de saber si solo son numeros
+
+expReg = /([0-9])\w+/;
+valor = 1234;
+valor = 'Hola mundo';
+
+console.log(expReg.test(valor));
+
+//Texto sean puras mayusculas
+expReg = /([A-Z])\w+/
+valor = 'hola mundo';//false
+valor = 123;//false    
+valor = 'ABC'//true
+console.log(expReg.test(valor));
+
+//letras en minusculas
+
+expReg = /([a-z])\w+/
+valor = 123;//false    
+valor = 'ABC'//false
+valor = 'hola mundo';//true
+console.log(expReg.test(valor));
+
+//EXP regular mail
+// expReg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}}))$/;
+
+// valor = 'correo@gmail';
+
+// console.log(expReg.test(valor));
