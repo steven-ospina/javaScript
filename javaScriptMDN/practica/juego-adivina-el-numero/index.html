@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+            html {
+              font-family: sans-serif;
+            }
+            body {
+              width: 50%;
+              max-width: 800px;
+              min-width: 480px;
+              margin: 0 auto;
+            }
+            .lastResult {
+              color: white;
+              padding: 3px;
+            }
+          </style>
+</head>
+<body>
+    <h1>Juego Adivina el número</h1>
+
+    <p>Seleccionamos un número aleatorio entre el 1 y 100. Fijate si puedes adivinarlo en 10 intentos o menos. Vamos a decirte si tu numero es más alto o más bajo.</p>
+    <!-- <p class="guesses"></p>
+    <p class="lastResult"></p>
+    <p class="lowOrHi"></p>
+    <label for="guessField">Adivina el número:</label>
+    <input type="text" name="" id="guessField" class="guessField">
+    <input type="submit" value="Enviar intento" class="guessSubmit"> -->
+    <div class="form">
+        <label for="guessField">Adivina el número:</label><input type="number" id="guessField" class="guessField">
+        <input type="submit" value="Enviar intento" class="guessSubmit">
+    </div>
+    <div class="resultParas">
+        <p class="guesses"></p>
+        <p class="lastResult"></p>
+        <p class="lowOrHi"></p>
+    </div>
+    <button>Iniciar máquina</button>
+    <p id="p">La máquina se detuvo.</p>  
+    <script src="main.js"></script>
+</body>
+</html>
