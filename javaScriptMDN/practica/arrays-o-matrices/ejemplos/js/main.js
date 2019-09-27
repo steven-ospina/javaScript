@@ -3,7 +3,7 @@ let data = 'perro,gato,pato,leon';
 
 let splass = data.split(',');
 console.log(splass);
-console.log(splass.length-1);
+console.log(splass.length-1);//resta un valor ala consulta
 
 //hace lo contrario del split
 let jo = splass.join(';');
