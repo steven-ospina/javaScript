@@ -16,30 +16,30 @@
 // information.datos();
 
 //obtener los productos
-function dataInfo(){
-    let url = 'productos.json';
-    fetch(url)
-    .then(function(response) {
-        if(response.ok){
-            console.info('obteniendo datos:');
-           return response.json();
-        }else{
-            console.error('papi eso no dio, revise el codigo')
-        }
-    })
-    .then(function(json) {
-       let datos = json.productos;
-       console.log(datos)
-       //obtener del DOM la lista donde van los valares
-       const list = document.querySelector('.output');
-    })
-    .catch(function(error) {
-        console.warn('ocurrio un error ' + error.message)
-    });
+// function dataInfo(){
+//     let url = 'productos.json';
+//     fetch(url)
+//     .then(function(response) {
+//         if(response.ok){
+//             console.info('obteniendo datos:');
+//            return response.json();
+//         }else{
+//             console.error('papi eso no dio, revise el codigo')
+//         }
+//     })
+//     .then(function(json) {
+//        let datos = json.productos;
+//        console.log(datos)
+//        //obtener del DOM la lista donde van los valares
+//        const list = document.querySelector('.output');
+//     })
+//     .catch(function(error) {
+//         console.warn('ocurrio un error ' + error.message)
+//     });
 
-}
+// }
 
-dataInfo();
+// dataInfo();
 
 //obtener del DOM la etiqueta donde ira el total de todos los productos
 
@@ -76,20 +76,42 @@ dataInfo();
 //   })
 //   .catch(error => console.log(`Ha sucedido un error: ${error}`));
 
-let url = 'productos.json';
-fetch(url)
-  .then(response => response.json())
-  .then(data => {
-    console.log('Breeds data response: ', data);
+//obteniendo productos y mostrarlos en el DOM
+// let url = 'productos.json';
+// fetch(url)
+//   .then(response => response.json())
+//   .then(data => {
+//     console.log('Breeds data response: ', data);
 
-    const ul = document.querySelector('.output');
-    const breeds = data.productos;
-    let ulContent = '';
+//     const ul = document.querySelector('.output');
+//     const breeds = data.productos;
+//     let ulContent = '';
 
-    for (const breed of breeds) {
-      const breedContent = `<li>${breed}</li>`;
-      ulContent += breedContent;
+//     for (const breed of breeds) {
+//       const breedContent = `<li>${breed}</li>`;
+//       ulContent += breedContent;
+//     }
+//     ul.innerHTML = ulContent;
+//   })
+//   .catch(error => console.log(`Ha sucedido un error: ${error}`));
+
+
+  //Api de imagenes de perros
+const createPromise = () => 
+fetch('https://dog.ceo/api/breeds/image/random/50')
+    .then(response => response.json());
+
+var promises = [createPromise()];
+
+Promise.all(promises)
+  .then(responses => {
+      const container = document.querySelector('.container');
+      const urlsImg = responses[0].message;
+      let imgContent = '';
+    //   console.log("urls de los dogs:",urlsImg);
+      for (const imagen of urlsImg) {
+      const img = `<img src=${imagen} height="300" width="300"></img>`;
+      imgContent += img;
     }
-    ul.innerHTML = ulContent;
-  })
-  .catch(error => console.log(`Ha sucedido un error: ${error}`));
+    container.innerHTML = imgContent;
+})
