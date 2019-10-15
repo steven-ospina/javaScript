@@ -1,117 +1,41 @@
-//     let information = {
-//         datos : function () {
-//             fetch('productos.json')
-//             .then(response => {
-//                 return response.json();
-//             })
-//             .then(json => {
-//                 return console.log(json.proudctos)
-//             })
-//             .catch(function(err) {
-//                 console.error(err);
-//             });
-//         }
-//     }
+//llamar la api imgDogApi
+import {callImgDogApi} from './services/api-fetch-img-dog.js'
 
-// information.datos();
+callImgDogApi();
 
-//obtener los productos
-// function dataInfo(){
-//     let url = 'productos.json';
-//     fetch(url)
-//     .then(function(response) {
-//         if(response.ok){
-//             console.info('obteniendo datos:');
-//            return response.json();
-//         }else{
-//             console.error('papi eso no dio, revise el codigo')
-//         }
-//     })
-//     .then(function(json) {
-//        let datos = json.productos;
-//        console.log(datos)
-//        //obtener del DOM la lista donde van los valares
-//        const list = document.querySelector('.output');
-//     })
-//     .catch(function(error) {
-//         console.warn('ocurrio un error ' + error.message)
-//     });
-
-// }
-
-// dataInfo();
-
-//obtener del DOM la etiqueta donde ira el total de todos los productos
-
-// let request = new Request('productos,json' , {
-//     method : 'GET'
-// });
-// console.log('request =', request)
-// fetch(request)
-
-//=======
-// function foo(i) {
-//     if (i < 0)
-//       return;
-//     console.log('inicio:' + i);
-//     foo(i - 1);
-//     console.log('final:' + i);
-// }
-
-// foo(3);
-// fetch('https://dog.ceo/api/breeds/list')
-//   .then(response => response.json())
-//   .then(data => {
-//     console.log('Breeds data response: ', data);
-
-//     const ul = document.querySelector('.output');
-//     const breeds = data.message;
-//     let ulContent = '';
-
-//     for (const breed of breeds) {
-//       const breedContent = `<li>${breed}</li>`;
-//       ulContent += breedContent;
-//     }
-//     ul.innerHTML = ulContent;
-//   })
-//   .catch(error => console.log(`Ha sucedido un error: ${error}`));
+//Seleccionando el total de los productos
+let totalBox = document.querySelector('.totalBox');
+totalBox.textContent = '';
+let total = 0;
 
 //obteniendo productos y mostrarlos en el DOM
-// let url = 'productos.json';
-// fetch(url)
-//   .then(response => response.json())
-//   .then(data => {
-//     console.log('Breeds data response: ', data);
+let url = 'productos.json';
+fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    // console.log('Breeds data response: ', data);
+    const ul = document.querySelector('.output');
+    const products = data.productos;
+    let ulContent = '';
 
-//     const ul = document.querySelector('.output');
-//     const breeds = data.productos;
-//     let ulContent = '';
+      for(let i = 0; i < products.length; i++){
+        //separa el valor numerico de la consulta
+        let subArray = products[i].split(':');
+        //optiene de la consulta el nombre del producto
+        let name = subArray[0];
+        //optiene de la consulta el valor del producto, y convierte los valores a numericos
+        let price = Number(subArray[1]);
+        //suma todos los valores de los productos
+        total += price
+        // console.log(total)
+      }
 
-//     for (const breed of breeds) {
-//       const breedContent = `<li>${breed}</li>`;
-//       ulContent += breedContent;
-//     }
-//     ul.innerHTML = ulContent;
-//   })
-//   .catch(error => console.log(`Ha sucedido un error: ${error}`));
-
-
-  //Api de imagenes de perros
-const createPromise = () => 
-fetch('https://dog.ceo/api/breeds/image/random/50')
-    .then(response => response.json());
-
-var promises = [createPromise()];
-
-Promise.all(promises)
-  .then(responses => {
-      const container = document.querySelector('.container');
-      const urlsImg = responses[0].message;
-      let imgContent = '';
-    //   console.log("urls de los dogs:",urlsImg);
-      for (const imagen of urlsImg) {
-      const img = `<img src=${imagen} height="300" width="300"></img>`;
-      imgContent += img;
+    for (const product of products) {
+      const breedContent = `<li>${product}</li>`;
+      ulContent += breedContent;
     }
-    container.innerHTML = imgContent;
-})
+    ul.innerHTML = ulContent;
+    //toFixed recorta el numero a dos decimales
+    totalBox.textContent = `Total: $${total.toFixed(2)}`
+  })
+  .catch(error => console.log(`Ha sucedido un error: ${error}`));
