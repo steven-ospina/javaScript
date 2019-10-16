@@ -14,10 +14,11 @@ fetch(url)
   .then(response => response.json())
   .then(data => {
     // console.log('Breeds data response: ', data);
+    //selecciono la clase de la etiqueta ul del DOM
     const ul = document.querySelector('.output');
+    //accedo a los productos consultados en el fetch
     const products = data.productos;
-    let ulContent = '';
-
+      //ciclo para consultar valor del producto y sumar el total de todos los productos 
       for(let i = 0; i < products.length; i++){
         //separa el valor numerico de la consulta
         let subArray = products[i].split(':');
@@ -31,11 +32,12 @@ fetch(url)
       }
 
     for (const product of products) {
-      const breedContent = `<li>${product}</li>`;
-      ulContent += breedContent;
+      const newItem = document.createElement('li');
+      const newContent = document.createTextNode(product)
+      newItem.appendChild(newContent);
+      ul.appendChild(newItem);
     }
-    ul.innerHTML = ulContent;
-    //toFixed recorta el numero a dos decimales
+
     totalBox.textContent = `Total: $${total.toFixed(2)}`
   })
   .catch(error => console.log(`Ha sucedido un error: ${error}`));
