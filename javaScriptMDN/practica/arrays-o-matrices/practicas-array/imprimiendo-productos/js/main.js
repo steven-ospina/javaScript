@@ -1,7 +1,12 @@
 //llamar la api imgDogApi
 import {callImgDogApi} from './services/api-fetch-img-dog.js'
 
-callImgDogApi();
+//obtiene la clase del boton del DOM
+const button = document.querySelector('.button');
+//crea un evento para llamar las img del api
+button.addEventListener('click', () => {
+  callImgDogApi();
+})
 
 //Seleccionando el total de los productos
 let totalBox = document.querySelector('.totalBox');
