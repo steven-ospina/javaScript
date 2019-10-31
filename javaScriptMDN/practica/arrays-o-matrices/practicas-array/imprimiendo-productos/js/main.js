@@ -33,15 +33,13 @@ fetch(url)
         let price = Number(subArray[1]);
         //suma todos los valores de los productos
         total += price
+        
+        const newItem = document.createElement('li');
+        const newContent = document.createTextNode(`${name} - $${price}`)
+        newItem.appendChild(newContent);
+        ul.appendChild(newItem);
         // console.log(total)
       }
-
-    for (const product of products) {
-      const newItem = document.createElement('li');
-      const newContent = document.createTextNode(product)
-      newItem.appendChild(newContent);
-      ul.appendChild(newItem);
-    }
 
     totalBox.textContent = `Total: $${total.toFixed(2)}`
   })

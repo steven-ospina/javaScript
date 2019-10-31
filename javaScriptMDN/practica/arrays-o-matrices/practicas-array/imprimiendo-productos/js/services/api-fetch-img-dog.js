@@ -1,10 +1,10 @@
   //Api de imagenes de perros
   export function callImgDogApi (){
-
+    const ENDPOINT = 'https://dog.ceo/api/breeds/image/random/50';
     const createPromise = () => 
-    fetch('https://dog.ceo/api/breeds/image/random/5')
-        .then(response => response.json());
-    
+    fetch(ENDPOINT)
+      .then(response => response.json());
+
     var promises = [createPromise()];
     
     Promise.all(promises)
