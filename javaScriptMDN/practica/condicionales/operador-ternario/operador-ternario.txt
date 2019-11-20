@@ -1,0 +1,13 @@
+Operador ternario
+Hay una última sintaxis que queremos presentarte antes de que juegues con algunos ejemplos.
+El operador ternario o condicional es una pequeña sintaxis que prueba una condición y devuelve un valor / expresión si es así true,
+y otro si lo es false; esto puede ser útil en algunas situaciones y puede ocupar mucho menos código que un if...elsebloque
+si simplemente tiene dos opciones que se eligen a través de una condición true/ false. El pseudocódigo se ve así:
+
+1- ( condition ) ? run this code : run this code instead
+
+Así que veamos un ejemplo simple:
+
+var greeting = ( isBirthday ) ? 'Happy birthday Mrs. Smith — we hope you have a great day!' : 'Good morning Mrs. Smith.';
+
+Aquí tenemos una variable llamada isBirthday: si es así true, le damos a nuestro invitado un mensaje de feliz cumpleaños; si no, le damos el saludo diario estándar.
